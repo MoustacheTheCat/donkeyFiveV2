@@ -68,6 +68,11 @@ const ROUTES = [
 		'method' => 'deleteUser'
 	],
 
+	'addadmin' => [
+		'controller' => App\Controller\AdminController::class,
+		'method' => 'add'
+	],
+
 	
 ];
 

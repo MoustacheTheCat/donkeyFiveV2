@@ -1,4 +1,7 @@
 
+
+// Modal de suppression d'un user 
+
 const btnDeleteUser = document.querySelector('.deleteUser');
 const modalDeleteUser = document.querySelector('.modalDeleteUser');
 const formDeleteUser = document.createElement('form');
