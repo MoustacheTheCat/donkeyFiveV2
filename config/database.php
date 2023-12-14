@@ -1,9 +1,7 @@
 <?php
 
-const DB_INFOS = [
-	'host'     => '127.0.0.1',
-	'port'     => '3306',
-	'dbname'   => 'nom_bdd',
-	'username' => 'root',
-	'password' => ''
-];
+// GLOBALS VARIABLES FOR DATABASE
+define('DB_DSN', 'mysql:host=localhost; dbname=donkeyFiveV2;');
+define('DB_USER', 'adminDbDonkeyFive');
+define('DB_PASS', 'password');
+define('DB_OPTIONS', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));

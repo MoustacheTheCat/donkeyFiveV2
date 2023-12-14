@@ -2,25 +2,72 @@
 
 const ROUTES = [
 	'/' => [
-		'controller' => App\Controller\MainController::class,
+		'controller' => App\Controller\HomeController::class,
 		'method' => 'home'
 	],
-	'/contact' => [
-		'controller' => App\Controller\MainController::class,
-		'method' => 'contact'
-	],
-	'home' => [
-		'controller' => App\Controller\MainController::class,
-		'method' => 'home'
-	],
-	'article' => [
-		'controller' => App\Controller\ArticleController::class,
-		'method' => 'index'
-	],
-	'article/add' => [
-		'controller' => App\Controller\ArticleController::class,
-		'method' => 'add'
-	]
 
+	'home' => [
+		'controller' => App\Controller\HomeController::class,
+		'method' => 'homeFilter'
+	],
+
+	'card' => [
+		'controller' => App\Controller\HomeController::class,
+		'method' => 'viewCardDetail'
+	],
+
+	'login' => [
+		'controller' => App\Controller\AuthController::class,
+		'method' => 'login'
+	],
+
+	'logincheck' => [
+		'controller' => App\Controller\AuthController::class,
+		'method' => 'loginChek'
+	],
+
+	'logout' => [
+		'controller' => App\Controller\AuthController::class,
+		'method' => 'logout'
+	],
+
+	'userprofile' => [
+		'controller' => App\Controller\UserController::class,
+		'method' => 'showUserProfile'
+	],
+
+	'adduser' => [
+		'controller' => App\Controller\UserController::class,
+		'method' => 'add'
+	],
+
+	'addusercheck' => [
+		'controller' => App\Controller\UserController::class,
+		'method' => 'addUser'
+	],
+
+	'edituser' => [
+		'controller' => App\Controller\UserController::class,
+		'method' => 'edit'
+	],
+	'edituserinfo' => [
+		'controller' => App\Controller\UserController::class,
+		'method' => 'editUserInfo'
+	],
+	'edituserpicture' => [
+		'controller' => App\Controller\UserController::class,
+		'method' => 'editUserPicture'
+	],
+	'edituserpassword' => [
+		'controller' => App\Controller\UserController::class,
+		'method' => 'editUserPassword'
+	],
+
+	'deleteuser' => [
+		'controller' => App\Controller\UserController::class,
+		'method' => 'deleteUser'
+	],
+
+	
 ];
 

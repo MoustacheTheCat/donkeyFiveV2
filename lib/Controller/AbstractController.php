@@ -1,6 +1,6 @@
 <?php
 
-namespace Plugo\Controller;
+namespace DonkeyFive\Controller;
 
 abstract class AbstractController {
     protected function renderView(string $template, array $data = []): string {

@@ -1,6 +1,6 @@
 <?php 
 const ALIASES = [
-	'Plugo' => 'lib',
+	'DonkeyFive' => 'lib',
 	'App' => 'src'
 ];
 
