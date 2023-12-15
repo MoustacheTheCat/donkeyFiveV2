@@ -63,16 +63,16 @@
 										<li>
 											<a class="dropdown-item" href="/messages">
 												Message
-												<?php if($nbMessage != 0):?>
+												<?php if(!empty($nbMessage) && $nbMessage != 0):?>
 													<span class="badge bg-dark text-white rounded-pill cart-items"><?= $nbMessage?></span>
 												<?php endif;?>
 											</a>
 										</li>
 									<?php endif; ?>
 									<?php if ($_SESSION['role'] === 'admin' ) : ?>
-										<li><a class="dropdown-item" href="/admin/profil">Profil</a></li>
+										<li><a class="dropdown-item" href="?path=adminprofil">Profil</a></li>
 									<?php elseif ($_SESSION['role'] == 'user' ) : ?>
-										<li><a class="dropdown-item" href="?path=userprofile">Profil</a></li>
+										<li><a class="dropdown-item" href="?path=userprofil">Profil</a></li>
 									<?php endif; ?>
 									<li><a class="dropdown-item" href="?path=logout">Logout</a></li>
 								</ul>

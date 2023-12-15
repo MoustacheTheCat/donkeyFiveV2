@@ -12,7 +12,11 @@ class Center {
     private ?string $centerNumber;
     private ?string $centerEmail;
     private ?string $centerInfo;
-    private ?string $centerPictur;
+    private ?string $centerPicture;
+    private ?string $centerDescription;
+    private ?string $createdAt;
+    private ?string $updatedAt;
+
 
 
     public function getCenterId(): ?int
@@ -29,6 +33,11 @@ class Center {
     public function getCenterName(): ?string
     {
         return $this->centerName;
+    }
+
+    public function getCenterDescription(): ?string
+    {
+        return $this->centerDescription;
     }
 
     public function setCenterName(?string $centerName): self
@@ -118,6 +127,12 @@ class Center {
     public function setCenterPicture(?string $centerPicture): self
     {
         $this->centerPicture = $centerPicture;
+        return $this;
+    }
+
+    public function setCenterDescription(?string $centerDescription): ?string
+    {
+        $this->centerDescription = $centerDescription;
         return $this;
     }
 }

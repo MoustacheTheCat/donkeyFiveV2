@@ -11,6 +11,11 @@ const ROUTES = [
 		'method' => 'homeFilter'
 	],
 
+	'filter' => [
+		'controller' => App\Controller\FilterController::class,
+		'method' => 'dataFilter'
+	],
+
 	'card' => [
 		'controller' => App\Controller\HomeController::class,
 		'method' => 'viewCardDetail'
@@ -31,7 +36,7 @@ const ROUTES = [
 		'method' => 'logout'
 	],
 
-	'userprofile' => [
+	'userprofil' => [
 		'controller' => App\Controller\UserController::class,
 		'method' => 'showUserProfile'
 	],
@@ -68,11 +73,44 @@ const ROUTES = [
 		'method' => 'deleteUser'
 	],
 
+	"adminprofil" => [
+		'controller' => App\Controller\AdminController::class,
+		'method' => 'showAdminProfile'
+	],
+
 	'addadmin' => [
 		'controller' => App\Controller\AdminController::class,
 		'method' => 'add'
 	],
 
-	
+	'addadmincheck' => [
+		'controller' => App\Controller\AdminController::class,
+		'method' => 'addAdmin'
+	],
+
+	'editadmin' => [
+		'controller' => App\Controller\AdminController::class,
+		'method' => 'edit'
+	],
+
+	'editadmininfo' => [
+		'controller' => App\Controller\AdminController::class,
+		'method' => 'editAdminInfo'
+	],
+
+	'editadminpicture' => [
+		'controller' => App\Controller\AdminController::class,
+		'method' => 'editAdminPicture'
+	],
+
+	'editadminpassword' => [
+		'controller' => App\Controller\AdminController::class,
+		'method' => 'editAdminPassword'
+	],
+
+	'deleteadmin' => [
+		'controller' => App\Controller\AdminController::class,
+		'method' => 'deleteAdmin'
+	],
 ];
 

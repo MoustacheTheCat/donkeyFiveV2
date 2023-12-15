@@ -6,7 +6,7 @@
         </section>
         <section class="d-flex justify-content-center flex-column mx-5 ">
             <h2 class="text-center">Recherche</h2>
-            <form action="/?path=home" method="POST" class="input-group d-flex justify-content-center bg-dark text-white p-5">
+                <div  class="input-group d-flex justify-content-center bg-dark text-white p-5">
                     <label class="form-label" for="city"></label>
                     <select class="form-control " name="city">
                         <option value="city">--City--</option>
@@ -22,8 +22,9 @@
                     <label class="form-label" for="hourEnd"></label>
                     <input class="form-control" type="time" name="hourEnd" id="" value="<?=date('H:i')?>" 
                 </div>
-                <button type="submit" class="btn btn-light" name="filterForRentalOrCountry">🔎</button>
-            </form>
+                <button type="submit" class="btn btn-light" name="filterForRentalOrCountry" value="filter">🔎</button>
+            </div>
+            
         </section>
         <section>
             <?php if (!empty($error)) : ?>
@@ -36,35 +37,25 @@
                 </div>
             <?php endif;?>
         </section>
-        <?php if (!empty($data['fields'])) : ?>
-            <section class="d-flex justify-content-center flex-column mx-5 ">
-                <h2 class="text-center">Your result</h2>
-                <div class="table-responsive-sm">
-                    <table class="table table-dark align-middle text-center" >
-                        <thead>
-                            <tr>
-                                <th scope="col">Field Name</th>
-                                <th scope="col">fieldTarifHourHT</th>
-                                <th scope="col">fieldTarifDayHT</th>
-                                <th scope="col">View</th>
-                                <th scope="col">Rent</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($data['fields'] as $field) : ?>
-                                <tr>
-                                    <td scope="row"><?= $field->getFieldName() ?></td>
-                                    <td><?= $field->getFieldTarifHourHT() ?></td>
-                                    <td><?= $field->getFieldTarifHourHT()*1.2 ?></td>
-                                    <td><a href="/field?id=<?= $field->getFieldId() ?>" class="btn btn-light">More</a></td>
-                                    <td><a href="/field/rent?id=<?= $field->getFieldId() ?>" class="btn btn-light">Rent field</a></td>
-                                </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-        <?php endif;?>
+        <section class="display-filter ">
+            <h2 class="text-center">Your result</h2>
+            <div class="table-responsive-sm">
+                <table class="table table-dark align-middle text-center" >
+                    <thead>
+                        <tr>
+                            <th scope="col">Field Name</th>
+                            <th scope="col">fieldTarifHourHT</th>
+                            <th scope="col">fieldTarifDayHT</th>
+                            <th scope="col">View</th>
+                            <th scope="col">Rent</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                    </tbody>
+                </table>
+            </div>
+        </section>
         <section>
             <div class="container mb-5 text-center">
                 <h2>Le top du top</h2>
@@ -85,3 +76,7 @@
             </div>
         </section>
     </div>
+
+    <?php
+    //action="/?path=home" method="POST"
+    //d-flex justify-content-center flex-column mx-5

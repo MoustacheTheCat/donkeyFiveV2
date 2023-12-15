@@ -3,110 +3,86 @@
 namespace App\Controller;
 
 use DonkeyFive\Controller\AbstractController;
-use App\Controller\FilterController;
-use App\Manager\UserManager;
+use App\Manager\AdminManager;
 use App\Manager\AuthManager;
 
 class AdminController extends AbstractController {
 
-    // public function showAdminProfile(){
-    //     $userManager = new UserManager();
-    //     return $this->renderView('main/user/show.php', [
-    //         'user' => $userManager->showProfile(),
-    //         'seo' => [
-    //             'title' => 'Show User',
-    //             'description' => 'Show User Page donkey Five'
-    //         ]
-    //     ]);
-    // }
+    public function showAdminProfile(){
+        $adminManager = new AdminManager();
+        return $this->renderView('main/admin/show.php', [
+            'admin' => $adminManager->showProfile(),
+            'seo' => [
+                'title' => 'Show Admin',
+                'description' => 'Show Admin Page donkey Five'
+            ]
+        ]);
+    }
+
     public function add() {
-        $userManager = new UserManager();
-        return $this->renderView('main/user/add.php', [
-            'countrys' => $userManager->getCountrys(),
+        $adminManager = new AdminManager();
+        return $this->renderView('main/admin/add.php', [
+            'countrys' => $adminManager->getCountrys(),
 			'seo' => [
-				'title' => 'Create User',
-				'description' => 'Create User Page donkey Five',
+				'title' => 'Create Admin',
+				'description' => 'Create Admin Page donkey Five',
                 
 			]
 		]);
     }
 
-    // public function addUser() {
-    //     $userManager = new UserManager();
-    //     $datas = $userManager->createUser();
-    //     if($datas === true){
-    //         return $this->redirectToRoute('login', ['state' => 'success']);
-    //     }
-    //     return $this->renderView('main/user/add.php', [
-    //         'datas' => $datas,
-    //         'countrys' => $userManager->getCountrys(),
-    //         'seo' => [
-    //             'title' => 'Create User',
-    //             'description' => 'Create User Page donkey Five'
-    //         ]
-    //     ]);
-    // }
+    public function addAdmin() {
+        $adminManager = new AdminManager();
+        $datas = $adminManager->createAdmin();
+        if($datas === true){
+            return $this->redirectToRoute('login', ['state' => 'success']);
+        }
+        return $this->add();
+    }
 
-    // public function edit() {
-    //     $userManager = new UserManager();
-    //     return $this->renderView('main/user/edit.php', [
-    //         'user' => $userManager->showProfile(),
-    //         'countrys' => $userManager->getCountrys(),
-    //         'seo' => [
-    //             'title' => 'Edit User',
-    //             'description' => 'Edit User Page donkey Five'
-    //         ]
-    //     ]);
-    // }
+    public function edit() {
+        $adminManager = new AdminManager();
+        return $this->renderView('main/admin/edit.php', [
+            'admin' => $adminManager->showProfile(),
+            'seo' => [
+                'title' => 'Edit Admin',
+                'description' => 'Edit Admin Page donkey Five'
+            ]
+        ]);
+    }
 
-    // public function editUserInfo() {
-    //     $userManager = new UserManager();
-    //     $datas = $userManager->editUserInfo();
-    //     if($datas === true){
-    //         return $this->redirectToRoute('userprofile', ['state' => 'success']);
-    //     }
-    //     return $this->renderView('main/user/edit.php', [
-    //         'datas' => $datas,
-    //         'user' => $userManager->showProfile(),
-    //         'countrys' => $userManager->getCountrys(),
-    //         'seo' => [
-    //             'title' => 'Edit User',
-    //             'description' => 'Edit User Page donkey Five'
-    //         ]
-    //     ]);
-    // }
+    public function editAdminInfo() {
+        $adminManager = new AdminManager();
+        $datas = $adminManager->editAdminInfo();
+        if($datas === true){
+            return $this->redirectToRoute('adminprofile', ['state' => 'success']);
+        }
+        return $this->edit();
+    }
 
-    // public function editUserPicture() {
-    //     $userManager = new UserManager();
-    //     $userManager->updateUserPicture();
-    //     return $this->redirectToRoute('userprofile', ['state' => 'success']);
-    // }
+    public function editAdminPicture() {
+        $adminManager = new AdminManager();
+        $adminManager->updateAdminPicture();
+        return $this->redirectToRoute('adminprofile', ['state' => 'success']);
+    }
 
-    // public function editUserPassword() {
-    //     $userManager = new UserManager();
-    //     $datas = $userManager->editUserPassword();
-    //     if($datas === true){
-    //         return $this->redirectToRoute('userprofile', ['state' => 'success']);
-    //     }
-    //     return $this->renderView('main/user/edit.php', [
-    //         'datas' => $datas,
-    //         'user' => $userManager->showProfile(),
-    //         'countrys' => $userManager->getCountrys(),
-    //         'seo' => [
-    //             'title' => 'Edit User',
-    //             'description' => 'Edit User Page donkey Five'
-    //         ]
-    //     ]);
-    // }
+    public function editAdminPassword() {
+        $adminManager = new AdminManager();
+        $datas = $adminManager->editAdminPassword();
+        if($datas === true){
+            return $this->redirectToRoute('adminprofile', ['state' => 'success']);
+        }
+        return $this->edit();
+    }
 
-    // public function deleteUser() {
-    //     $userManager = new UserManager();
-    //     $authManager = new AuthManager();
-    //     if($userManager->deleteUser()){
-    //         $authManager->logout();
-    //         return $this->redirectToRoute('/', ['state' => 'success']);
-    //     }
-    //     return $this->redirectToRoute('userprofile', ['state' => 'error']);
+    public function deleteUser() {
+        $adminManager = new AdminManager();
+        $authManager = new AuthManager();
+        if($adminManager->deleteAdmin()){
+            $authManager->logout();
+            return $this->redirectToRoute('/', ['state' => 'success']);
+        }
+        return $this->redirectToRoute('adminprofile', ['state' => 'error']);
 
-    // }
+    }
 }

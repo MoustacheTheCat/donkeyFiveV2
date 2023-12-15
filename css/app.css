@@ -1,4 +1,4 @@
-.modalDeleteUser{
+.modalDeleteProfil{
     display: none ;
     
 }
@@ -63,4 +63,15 @@
     background-color: #212529;
     color: #fff;
     border: 1px solid #fff;
+}
+
+.display-filter-hiden{
+    display: none;
+}
+
+.display-filter-show{
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0 auto;
 }

@@ -20,9 +20,7 @@ class UserManager extends  AbstractManager{
 		return $this->readMany(User::class);
 	}
 
-    public function findAllEmailAndNumberUser(){
-        return $this->readManyByQueryPerso(User::class, $this->getQuerys()['allUserEmailAndNumber']);
-    }
+    
 
     public function find($id) {
         return $this->readOne(User::class, ['userId' => $id]);
@@ -33,12 +31,10 @@ class UserManager extends  AbstractManager{
         return $this->readOne(User::class, ['userId' => $id]);
     }
 
-    public function findByEmail($email) {
-        return $this->readOne(User::class, ['userEmail' => $email]);
-    }
+    
 
     public function createUser() {
-        $datas = $this->findAllEmailAndNumberUser();
+        $datas = $this->findAllEmailAndNumber(User::class, $this->getQuerys()['allUserEmailAndNumber']);
         $arrayVerifs = [];
         foreach($datas as $data){
             $arrayVerifs[] = $data->getUserEmail();

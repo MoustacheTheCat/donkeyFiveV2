@@ -30,11 +30,11 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="modalDeleteUser"></div>
+                        <div class="modalDeleteProfil"></div>
                         <div class="row pb-5">
                             <div class="col-6 d-flex justify-content-around">
                                 <a href="?path=edituser&id=<?=$data['user']->getUserId()?>" class="btn btn-outline-light m-2">Edit</a>
-                                <button class="btn btn-outline-light m-2 deleteUser">Delete</button>
+                                <button class="btn btn-outline-light m-2 deleteProfile">Delete</button>
                             </div>
                         </div>
                     </div>
@@ -44,6 +44,3 @@
     </section>
 </div>
 
-<?php
-//<a href="?path=userdelete&id=<?=$data['user']->getUserId()?>
-<?php //" class="btn btn-outline-light m-2">Delete</a>

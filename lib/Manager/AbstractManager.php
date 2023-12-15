@@ -4,11 +4,13 @@ namespace DonkeyFive\Manager;
 
 require dirname(__DIR__, 2) . '/config/database.php';
 require dirname(__DIR__, 2) . '/config/querys.php';
+require dirname(__DIR__, 2) . '/config/messages.php';
 
 abstract class AbstractManager {
 
 	private array $querys;
 	private array $countrys;
+	private array $messages;
 
 
 	public function __construct() {
@@ -26,6 +28,10 @@ abstract class AbstractManager {
 
 	public function getAllCountrys() {
 		return $this->countrys;
+	}
+
+	public function getAllMessages() {
+		return $this->messages;
 	}
 
 	private function connect(): \PDO {
@@ -99,6 +105,14 @@ abstract class AbstractManager {
 		return $stmt->fetchAll();
 		
 	}
+
+	public function findAllEmailAndNumber(string $class, array $params = []){
+        return $this->readManyByQueryPerso($class, $params);
+    }
+
+	public function findByEmail(string $class, array $params = []): mixed {
+        return $this->readOne($class, $params);
+    }
 
 	protected function create(string $class, array $fields): \PDOStatement {
 		$query = "INSERT INTO " . $this->classToTable($class) . " (";
@@ -191,7 +205,17 @@ abstract class AbstractManager {
 	}
 	
     
-
+	public function sendMail(array $mailDatas){
+		$to = $mailDatas['to'];
+		$subject = $mailDatas['subject'];
+		$message = $this->getAllMessages()[$mailDatas['message']];
+		$headers = "From: " . $mailDatas['from'] . "\r\n";
+		$headers .= "Reply-To: ". $mailDatas['from'] . "\r\n";
+		$headers .= "CC: ".$mailDatas['from']."\r\n";
+		$headers .= "MIME-Version: 1.0\r\n";
+		$headers .= "Content-Type: text/html; charset=UTF-8\r\n";	
+		mail($to, $subject, $message, $headers);
+	}
 	
 
 }

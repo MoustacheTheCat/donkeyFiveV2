@@ -10,7 +10,7 @@ use App\Manager\HomeManager;
 class FilterController extends AbstractController {
 
     public function filter() {
-        $id = intval($_POST['city']);
+        $id = intval($_GET['id']);
         $filterManager = new FilterManager();
         $centerManager = new CenterManager();
         $homeManger = new HomeManager();
@@ -22,5 +22,18 @@ class FilterController extends AbstractController {
 			'choix' => $homeManger->getChoixCard(),
 			'tournoi' => $homeManger->getTournoiCard()
 		]);
+	}
+
+    public function dataFilter() {
+        $id = intval($_GET['id']);
+        $filterManager = new FilterManager();
+        $data = $filterManager->getAllFielsAndRentalsByCenterByIdint($id);
+        header('Content-Type: application/json'); 
+        if ($data) {
+            echo json_encode($data);
+        } else {
+            echo json_encode(['error' => 'Aucune donnée trouvée']);
+        }
+        exit;
 	}
 }

@@ -3,9 +3,9 @@
 namespace App\Manager;
 
 use DonkeyFive\Manager\AbstractManager;
-use App\Entity\User;
+use App\Entity\Admin;
 
-class UserManager extends  AbstractManager{
+class AdminManager extends  AbstractManager{
     
 
     public array $dataVerifs = ['adminName', 'adminFirstName', 'adminLastName', 'adminEmail', 'adminPassword', 'adminNumber'];
@@ -20,9 +20,7 @@ class UserManager extends  AbstractManager{
 		return $this->readMany(Admin::class);
 	}
 
-    public function findAllEmailAndNumberUser(){
-        return $this->readManyByQueryPerso(Admin::class, $this->getQuerys()['allAdminEmailAndNumber']);
-    }
+    
 
     public function find($id) {
         return $this->readOne(Admin::class, ['adminId' => $id]);
@@ -33,12 +31,10 @@ class UserManager extends  AbstractManager{
         return $this->readOne(Admin::class, ['adminId' => $id]);
     }
 
-    public function findByEmail($email) {
-        return $this->readOne(Admin::class, ['adminEmail' => $email]);
-    }
+    
 
-    public function createUser() {
-        $datas = $this->findAllEmailAndNumberUser();
+    public function createAdmin() {
+        $datas = $this->findAllEmailAndNumber(Admin::class, $this->getQuerys()['allAdminEmailAndNumber']);
         $arrayVerifs = [];
         foreach($datas as $data){
             $arrayVerifs[] = $data->getUserEmail();
@@ -78,7 +74,7 @@ class UserManager extends  AbstractManager{
         
     }
 
-    public function editUserInfo() {
+    public function editAdminInfo() {
         $id = $_SESSION['admin']['id'];
         foreach($this->dataVerifs as $data){
             if(isset($_POST[$data])){
@@ -92,7 +88,7 @@ class UserManager extends  AbstractManager{
         return $error;
     }
 
-    public function updateUserpicture() {
+    public function updateAdminpicture() {
         $id = $_SESSION['admin']['id'];
         $picture = $this->updatePicture(Admin::class, ['adminId' => $id]);
         if(is_array($picture)){
@@ -106,12 +102,12 @@ class UserManager extends  AbstractManager{
     }
    
 
-    public function editUserPassword(){
+    public function editAdminPassword(){
         $id = $_SESSION['admin']['id'];
         $user = $this->readOne(Admin::class, ['adminId' => $id]);
         if(password_verify($_POST['password'], $user->getUserPassword())){
-            if($_POST['newUserPassword'] == $_POST['newUserPasswordConfirm']){
-                $newPassword = password_hash($_POST['newUserPassword'],  PASSWORD_ARGON2I );
+            if($_POST['newAdminPassword'] == $_POST['newAdminPasswordConfirm']){
+                $newPassword = password_hash($_POST['newAdminPassword'],  PASSWORD_ARGON2I );
                 if($this->update(Admin::class, ['adminPassword' => $newPassword], ['adminId' => $id])){
                     return true;
                 }
@@ -121,7 +117,7 @@ class UserManager extends  AbstractManager{
         return $error;
     }
 
-    public function deleteUser() {
+    public function deleteAdmin() {
         $id = $_SESSION['admin']['id'];
         $user = $this->readOne(Admin::class, ['adminId' => $id]);
         if(password_verify($_POST['password'], $user->getUserPassword())){
