@@ -10,4 +10,8 @@ class CenterManager extends  AbstractManager{
     public function findAll() {
 		return $this->readMany(Center::class);
 	}
+
+	public function getAllCenterCity(){
+        return $this->readManyByQueryPerso(Center::class, $this->getQuerys()['allCenterCity']);
+    }
 }

@@ -5,12 +5,13 @@ namespace DonkeyFive\Manager;
 require dirname(__DIR__, 2) . '/config/database.php';
 require dirname(__DIR__, 2) . '/config/querys.php';
 require dirname(__DIR__, 2) . '/config/messages.php';
-
+require dirname(__DIR__, 2) . '/config/homecards.php';
 abstract class AbstractManager {
 
 	private array $querys;
 	private array $countrys;
 	private array $messages;
+	private array $homeCards;
 
 
 	public function __construct() {
@@ -21,6 +22,7 @@ abstract class AbstractManager {
             "Finland", "Austria", "Portugal", "Greece", "Ireland", "Czech Republic",
             "Hungary", "Croatia", "United States", "Canada", "Australia", "India", "China"
         ];
+		$this->homeCards = HOMECARDS;
 	}
 	public function getQuerys (){
 		return $this->querys;
@@ -34,11 +36,17 @@ abstract class AbstractManager {
 		return $this->messages;
 	}
 
+	public function getAllHomeCards(){
+        return $this->homeCards;
+    }
+
+
 	private function connect(): \PDO {
 		$db = new \PDO(DB_DSN, DB_USER, DB_PASS, DB_OPTIONS);
 		$db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 		$db->exec("SET NAMES utf8");
 		return $db;
+		
 	}
 
     private function executeQuery(string $query, array $params = []): \PDOStatement {

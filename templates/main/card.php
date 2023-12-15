@@ -1,3 +1,4 @@
+
 <div class="row text-center m-5">
     <h1><?= $data['card']['title'] ?></h1>
 </div>

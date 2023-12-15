@@ -6,18 +6,13 @@ const ROUTES = [
 		'method' => 'home'
 	],
 
-	'home' => [
-		'controller' => App\Controller\HomeController::class,
-		'method' => 'homeFilter'
-	],
-
 	'filter' => [
-		'controller' => App\Controller\FilterController::class,
+		'controller' => App\Controller\FieldController::class,
 		'method' => 'dataFilter'
 	],
 
 	'card' => [
-		'controller' => App\Controller\HomeController::class,
+		'controller' => App\Controller\HomeCardController::class,
 		'method' => 'viewCardDetail'
 	],
 
