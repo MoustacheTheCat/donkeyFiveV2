@@ -37,7 +37,6 @@ if(titlePage.includes('Home')){
                             <td>${field.fieldTarifHourHT}</td>
                             <td>${field.fieldTarifHourHT * 1.2}</td>
                             <td><a href="?path=field&id=${field.fieldId}" class="btn btn-light">More</a></td>
-                            <td><a href="?path=rentfield&id=${field.fieldId}" class="btn btn-light">Rent field</a></td>
                         `;
                         tableBody.appendChild(tr);
                     });
@@ -104,6 +103,14 @@ else if(titlePage.includes('Field')){
         const modalRent = document.querySelector('.modalRent');
         modalRent.classList.add("flex");
         const formRent = document.createElement('form');
+        const h2 = document.createElement('h2');
+        h2.textContent = 'Réservation';
+        formRent.appendChild(h2);
+        const ul = document.createElement('ul');
+        const ultitle = document.createElement('h3');
+        ultitle.textContent = 'Options';
+        formRent.appendChild(ultitle);
+        formRent.appendChild(ul);
         formRent.setAttribute('method', 'POST');
         formRent.setAttribute('class', 'form-rent');
         formRent.setAttribute('action', '?path=addrent');
@@ -115,27 +122,60 @@ else if(titlePage.includes('Field')){
             return response.json();
         })
         .then(datas => {
-            console.log(datas);
-            const select = document.createElement('select');
-            select.setAttribute('name', 'time');
-            datas.forEach(data => {
-                console.log(data);
-                const option = document.createElement('option');
-                option.setAttribute('value', data.optionId);
-                option.textContent = data.optionName;
-                select.appendChild(option);
+            datas.forEach(option => {
+                const li = document.createElement('li');
+                const input = document.createElement('input');
+                input.setAttribute('type', 'checkbox');
+                input.setAttribute('name', 'option[]');
+                input.setAttribute('value', option.optionId);
+                li.appendChild(input);
+                const label = document.createElement('label');
+                label.setAttribute('for', option.optionName);
+                label.textContent = option.optionName;
+                li.appendChild(label);
+                ul.appendChild(li);
             });
-            formRent.appendChild(select);
+            
         }
         )
         .catch(error => console.error('Erreur Fetch:', error));
 
-        const labelRent = document.createElement('label');
-        labelRent.setAttribute('for', 'date');
-        labelRent.textContent = 'Date de réservation';
-        const inputRent = document.createElement('input');
-        inputRent.setAttribute('type', 'date');
-        inputRent.setAttribute('name', 'date');
+        const labelRentDateStart = document.createElement('label');
+        labelRentDateStart.setAttribute('class', 'label-date-start');
+        labelRentDateStart.setAttribute('for', 'dateStart');
+        labelRentDateStart.textContent = 'Date de début de réservation';
+        const inputRentDateStart = document.createElement('input');
+        inputRentDateStart.setAttribute('class', 'input-date-start');
+        inputRentDateStart.setAttribute('type', 'date');
+        inputRentDateStart.setAttribute('name', 'dateStart');
+
+        const labelRentDateEnd = document.createElement('label');
+        labelRentDateEnd.setAttribute('for', 'dateEnd');
+        labelRentDateEnd.setAttribute('class', 'label-date-end');
+        labelRentDateEnd.textContent = 'Date de fin de réservation';
+        const inputRentDateEnd = document.createElement('input');
+        inputRentDateEnd.setAttribute('class', 'input-date-end');
+        inputRentDateEnd.setAttribute('type', 'date');
+        inputRentDateEnd.setAttribute('name', 'dateEnd');
+
+        const labelRentHourStart = document.createElement('label');
+        labelRentHourStart.setAttribute('class', 'label-hour-start');
+        labelRentHourStart.setAttribute('for', 'hourStart');
+        labelRentHourStart.textContent = 'Heure de début de réservation';
+        const inputRentHourStart = document.createElement('input');
+        inputRentHourStart.setAttribute('class', 'input-hour-start');
+        inputRentHourStart.setAttribute('type', 'time');
+        inputRentHourStart.setAttribute('name', 'hourStart');
+
+        const labelRentHourEnd = document.createElement('label');
+        labelRentHourEnd.setAttribute('class', 'label-hour-end');
+        labelRentHourEnd.setAttribute('for', 'hourEnd');
+        labelRentHourEnd.textContent = 'Heure de fin de réservation';
+        const inputRentHourEnd = document.createElement('input');
+        inputRentHourEnd.setAttribute('class', 'input-hour-end');
+        inputRentHourEnd.setAttribute('type', 'time');
+        inputRentHourEnd.setAttribute('name', 'hourEnd');
+
         const btnConfirmRent = document.createElement('button');
         btnConfirmRent.setAttribute('type', 'submit');
         btnConfirmRent.setAttribute('class', 'btn-confirm');
@@ -145,8 +185,14 @@ else if(titlePage.includes('Field')){
         btnCancelRent.setAttribute('class', 'btn-cancel');
         btnCancelRent.textContent = 'Annuler';
         modalRent.appendChild(formRent);
-        formRent.appendChild(labelRent);
-        formRent.appendChild(inputRent);
+        formRent.appendChild(labelRentDateStart);
+        formRent.appendChild(inputRentDateStart);
+        formRent.appendChild(labelRentDateEnd);
+        formRent.appendChild(inputRentDateEnd);
+        formRent.appendChild(labelRentHourStart);
+        formRent.appendChild(inputRentHourStart);
+        formRent.appendChild(labelRentHourEnd);
+        formRent.appendChild(inputRentHourEnd);
         formRent.appendChild(btnCancelRent);
         formRent.appendChild(btnConfirmRent);
         btnCancelRent.addEventListener('click', function() {

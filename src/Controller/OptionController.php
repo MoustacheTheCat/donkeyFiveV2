@@ -30,10 +30,9 @@ class OptionController extends AbstractController {
 
 	public function optionList() {
 		$optionManager = new OptionManager();
-		$data = $optionManager->findAll();
 		header('Content-Type: application/json'); 
-        if ($data) {
-            echo json_encode($data);
+        if ($optionManager->findAll()) {
+            echo json_encode($optionManager->findAll());
         } else {
             echo json_encode(['error' => 'Aucune donnée trouvée']);
         }

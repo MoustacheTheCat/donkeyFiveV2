@@ -47,7 +47,6 @@
                             <th scope="col">fieldTarifHourHT</th>
                             <th scope="col">fieldTarifDayHT</th>
                             <th scope="col">View</th>
-                            <th scope="col">Rent</th>
                         </tr>
                     </thead>
                     <tbody>

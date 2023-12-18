@@ -3,13 +3,13 @@
 namespace App\Entity;
 
 class Option {
-    private ?int $optionId;
-    private ?string $optionName;
-    private ?float $optionCostHT;
-    private ?string $optionDescription;
-    private ?string $optionPicture;
-    private ?string $createdAt;
-    private ?string $updatedAt;
+    public ?int $optionId;
+    public ?string $optionName;
+    public ?float $optionCostHT;
+    public ?string $optionDescription;
+    public ?string $optionPicture;
+    public ?string $createdAt;
+    public ?string $updatedAt;
 
     public function getOptionId(): ?int
     {
