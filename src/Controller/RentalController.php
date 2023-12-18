@@ -13,4 +13,13 @@ class RentalController extends AbstractController {
             'state' => 'success',
             ]);
     }
+    public function shows() {
+        $rentalManager = new RentalManager();
+        return $this->renderView('main/rental/shows.php', [
+            'seo' => [
+				'title' => 'Cards',
+				'description' => 'Cards Page donkey Five'
+			]
+            ]);
+    }
 }

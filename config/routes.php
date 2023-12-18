@@ -193,35 +193,35 @@ const ROUTES = [
 		'method' => 'deleteField'
 	],
 
-	'cards' => [
-		'controller' => App\Controller\CardController::class,
-		'method' => 'shows'
-	],
+	// 'cards' => [
+	// 	'controller' => App\Controller\CardController::class,
+	// 	'method' => 'shows'
+	// ],
 
-	'card' => [
-		'controller' => App\Controller\CardController::class,
-		'method' => 'show'
-	],
+	// 'card' => [
+	// 	'controller' => App\Controller\CardController::class,
+	// 	'method' => 'show'
+	// ],
 
-	'addcard' => [
-		'controller' => App\Controller\CardController::class,
-		'method' => 'add'
-	],
+	// 'addcard' => [
+	// 	'controller' => App\Controller\CardController::class,
+	// 	'method' => 'add'
+	// ],
 
-	'addcardcheck' => [
-		'controller' => App\Controller\CardController::class,
-		'method' => 'addCheck'
-	],
+	// 'addcardcheck' => [
+	// 	'controller' => App\Controller\CardController::class,
+	// 	'method' => 'addCheck'
+	// ],
 
-	'editcard' => [
-		'controller' => App\Controller\CardController::class,
-		'method' => 'edit'
-	],
+	// 'editcard' => [
+	// 	'controller' => App\Controller\CardController::class,
+	// 	'method' => 'edit'
+	// ],
 
-	'deletecard' => [
-		'controller' => App\Controller\CardController::class,
-		'method' => 'deleteCard'
-	],
+	// 'deletecard' => [
+	// 	'controller' => App\Controller\CardController::class,
+	// 	'method' => 'deleteCard'
+	// ],
 
 	'centers' => [
 		'controller' => App\Controller\CenterController::class,
@@ -266,6 +266,11 @@ const ROUTES = [
 	'addrent' => [
 		'controller' => App\Controller\RentalController::class,
 		'method' => 'add'
+	],
+
+	'rentals' => [
+		'controller' => App\Controller\RentalController::class,
+		'method' => 'shows'
 	],
 
 	

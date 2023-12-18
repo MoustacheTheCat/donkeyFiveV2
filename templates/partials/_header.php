@@ -65,9 +65,9 @@
 								</ul>
 							</li>
 						<?php endif; ?>
-						<?php if (empty($_SESSION) || (!empty($_SESSION['role']) && ($_SESSION['role'] === 'admin' || $_SESSION['role'] === 'user'))) : ?>
+						<?php if (empty($_SESSION['user']) || (!empty($_SESSION['role']) &&  $_SESSION['role'] === 'user')) : ?>
 							<li class="nav-item">
-								<a class="nav-link" href="/carts"> 
+								<a class="nav-link" href="?path=rentals"> 
 									<i class="bi bi-cart">
 									<img src="public/logo/header/sticker-but-de-foot-ambiance-sticker-KC10584-3854526139.svg" alt="" srcset="">
 									<?php if(!empty($_SESSION['cart'])):?>
