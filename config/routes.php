@@ -263,6 +263,11 @@ const ROUTES = [
 		'method' => 'deleteCenter'
 	],
 
+	'addrent' => [
+		'controller' => App\Controller\RentalController::class,
+		'method' => 'add'
+	],
+
 	
 
 

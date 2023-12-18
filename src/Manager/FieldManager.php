@@ -23,6 +23,10 @@ class FieldManager extends AbstractManager {
         return $this->readOne(Field::class, ['fieldId' => $_GET['id']]);
     }
 
+    public function findFieldByIdNotGet($id) {
+        return $this->readOne(Field::class, ['fieldId' => $id]);
+    }
+
     public function getAllFielsByCenterId(int $id) {
         return $this->readManyByQueryPersoAndParam(Field::class, $this->getAllQuerys()['allFieldByCenterId'], [':centerId' => $id]);
     }

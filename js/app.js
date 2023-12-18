@@ -98,6 +98,8 @@ else if(titlePage.includes('Profile')){
 }
 else if(titlePage.includes('Field')){
     const btnRent = document.querySelector('.rent');
+    let fieldId = btnRent.value;
+    console.log(fieldId);
     console.log(btnRent);
     btnRent.addEventListener('click', function() {
         const modalRent = document.querySelector('.modalRent');
@@ -113,7 +115,7 @@ else if(titlePage.includes('Field')){
         formRent.appendChild(ul);
         formRent.setAttribute('method', 'POST');
         formRent.setAttribute('class', 'form-rent');
-        formRent.setAttribute('action', '?path=addrent');
+        formRent.setAttribute('action', "?path=addrent&id="+fieldId);
         fetch('?path=optionlist')
         .then(response => {
             if (!response.ok) {
@@ -148,6 +150,9 @@ else if(titlePage.includes('Field')){
         inputRentDateStart.setAttribute('class', 'input-date-start');
         inputRentDateStart.setAttribute('type', 'date');
         inputRentDateStart.setAttribute('name', 'dateStart');
+        inputRentDateStart.value = new Date().toISOString().slice(0,10);
+        inputRentDateStart.setAttribute('min', new Date().toISOString().slice(0,10));
+
 
         const labelRentDateEnd = document.createElement('label');
         labelRentDateEnd.setAttribute('for', 'dateEnd');
@@ -157,6 +162,8 @@ else if(titlePage.includes('Field')){
         inputRentDateEnd.setAttribute('class', 'input-date-end');
         inputRentDateEnd.setAttribute('type', 'date');
         inputRentDateEnd.setAttribute('name', 'dateEnd');
+        inputRentDateEnd.value = new Date().toISOString().slice(0,10);
+        inputRentDateEnd.setAttribute('min', new Date().toISOString().slice(0,10));
 
         const labelRentHourStart = document.createElement('label');
         labelRentHourStart.setAttribute('class', 'label-hour-start');
@@ -166,6 +173,9 @@ else if(titlePage.includes('Field')){
         inputRentHourStart.setAttribute('class', 'input-hour-start');
         inputRentHourStart.setAttribute('type', 'time');
         inputRentHourStart.setAttribute('name', 'hourStart');
+        inputRentHourStart.value = new Date().toISOString().slice(11,16);
+        inputRentHourStart.setAttribute('min', '08:00');
+        inputRentHourStart.setAttribute('max', '21:00');
 
         const labelRentHourEnd = document.createElement('label');
         labelRentHourEnd.setAttribute('class', 'label-hour-end');
@@ -175,6 +185,9 @@ else if(titlePage.includes('Field')){
         inputRentHourEnd.setAttribute('class', 'input-hour-end');
         inputRentHourEnd.setAttribute('type', 'time');
         inputRentHourEnd.setAttribute('name', 'hourEnd');
+        inputRentHourEnd.value = new Date().toISOString().slice(11,16);
+        inputRentHourEnd.setAttribute('min', '08:00');
+        inputRentHourEnd.setAttribute('max', '21:00');
 
         const btnConfirmRent = document.createElement('button');
         btnConfirmRent.setAttribute('type', 'submit');

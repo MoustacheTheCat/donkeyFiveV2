@@ -28,7 +28,7 @@
                             <div class="car-footer">
                                 <div class="row pb-5">
                                     <div class="col-12 d-flex justify-content-around">
-                                        <button class="btn btn-outline-light m-2 rent">Rent</button>
+                                        <button class="btn btn-outline-light m-2 rent" value="<?= $data['field']->getFieldId() ?>">Rent</button>
                                     </div>
                                 </div>
                             </div>

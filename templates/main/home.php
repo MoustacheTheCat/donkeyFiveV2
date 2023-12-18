@@ -1,4 +1,4 @@
-
+<?php var_dump($_SESSION['card']); ?>
 <div class="col-12">
         <section class="my-4 text-center row d-flex justify-content-center flex-column px-5">
             <h3>Toi aussi montre tes plus beaux skills</h3>
