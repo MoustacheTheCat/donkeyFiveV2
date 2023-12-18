@@ -3,13 +3,15 @@
 namespace App\Entity;
 
 class Field {
-   public ?int $fieldId;
-   public ?string $fieldName;
-   public ?string $fieldTarifHourHT;
-   public ?string $fieldTarifDayHT;
-   public ?string $fieldDescription;
-   public ?string $fieldPicture ;
-   public ?int $centerId;
+    public ?int $fieldId;
+    public ?string $fieldName;
+    public ?string $fieldTarifHourHT;
+    public ?string $fieldTarifDayHT;
+    public ?string $fieldDescription;
+    public ?string $fieldPicture ;
+    public ?int $centerId;
+    private ?string $createdAt;
+    private ?string $updatedAt;
 
 
     public function getFieldId(): ?int

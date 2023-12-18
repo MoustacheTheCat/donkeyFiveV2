@@ -36,8 +36,8 @@ if(titlePage.includes('Home')){
                             <td scope="row">${field.fieldName}</td>
                             <td>${field.fieldTarifHourHT}</td>
                             <td>${field.fieldTarifHourHT * 1.2}</td>
-                            <td><a href="/field?id=${field.fieldId}" class="btn btn-light">More</a></td>
-                            <td><a href="/field/rent?id=${field.fieldId}" class="btn btn-light">Rent field</a></td>
+                            <td><a href="?path=field&id=${field.fieldId}" class="btn btn-light">More</a></td>
+                            <td><a href="?path=rentfield&id=${field.fieldId}" class="btn btn-light">Rent field</a></td>
                         `;
                         tableBody.appendChild(tr);
                     });
@@ -48,51 +48,111 @@ if(titlePage.includes('Home')){
     });
 }
 
-else if(titlePage.includes('Profil')){
-    const btnDeleteProfil = document.querySelector('.deleteProfile');
-    const modalDeleteProfil = document.querySelector('.modalDeleteProfil');
+else if(titlePage.includes('Profile')){
+    const btnDelete = document.querySelector('.delete');
+    const modalDelete = document.querySelector('.modalDelete');
 
-    const formDeleteProfil = document.createElement('form');
-    formDeleteProfil.setAttribute('method', 'POST');
-    formDeleteProfil.setAttribute('class', 'form-delete');
+    const formDelete = document.createElement('form');
+    formDelete.setAttribute('method', 'POST');
+    formDelete.setAttribute('class', 'form-delete');
 
-    const labelDeleteProfil = document.createElement('label');
-    labelDeleteProfil.setAttribute('for', 'password');
-    labelDeleteProfil.textContent = 'renseigner votre password pour supprimer votre compte ?';
+    const labelDelete = document.createElement('label');
+    labelDelete.setAttribute('for', 'password');
     
-    const inputDeleteProfil = document.createElement('input');
-    inputDeleteProfil.setAttribute('type', 'password');
-    inputDeleteProfil.setAttribute('name', 'password');
+    
+    const inputDelete = document.createElement('input');
+    inputDelete.setAttribute('type', 'password');
+    inputDelete.setAttribute('name', 'password');
 
-    const btnConfirmDeleteProfil = document.createElement('button');
-    btnConfirmDeleteProfil.setAttribute('type', 'submit');
-    btnConfirmDeleteProfil.setAttribute('class', 'btn-confirm');
-    btnConfirmDeleteProfil.textContent = 'Confirmer';
+    const btnConfirmDelete = document.createElement('button');
+    btnConfirmDelete.setAttribute('type', 'submit');
+    btnConfirmDelete.setAttribute('class', 'btn-confirm');
+    btnConfirmDelete.textContent = 'Confirmer';
 
-    const btnCancelDeleteProfil = document.createElement('button');
-    btnCancelDeleteProfil.setAttribute('type', 'button');
-    btnCancelDeleteProfil.setAttribute('class', 'btn-cancel');
-    btnCancelDeleteProfil.textContent = 'Annuler';
+    const btnCancelDelete = document.createElement('button');
+    btnCancelDelete.setAttribute('type', 'button');
+    btnCancelDelete.setAttribute('class', 'btn-cancel');
+    btnCancelDelete.textContent = 'Annuler';
 
-    btnDeleteProfil.addEventListener('click', function() {
-        modalDeleteProfil.classList.add("flex");
-        if(btnDeleteProfil.value == 'admin') {
-            formDeleteProfil.setAttribute('action', '?path=deleteuseradmin');
+    btnDelete.addEventListener('click', function() {
+        modalDelete.classList.add("flex");
+        if(btnDelete.value == 'admin') {
+            formDelete.setAttribute('action', '?path=deleteuseradmin');
+            labelDelete.textContent = 'renseigner votre password pour supprimer votre compte ?';
         }
-        else {
-            formDeleteProfil.setAttribute('action', '?path=deleteuser');
+        else if(btnDelete.value == 'user'){
+            formDelete.setAttribute('action', '?path=deleteuser');
+            labelDelete.textContent = 'renseigner votre password pour supprimer votre compte ?';
         }
-        modalDeleteProfil.appendChild(formDeleteProfil);
-        formDeleteProfil.appendChild(labelDeleteProfil);
-        formDeleteProfil.appendChild(inputDeleteProfil);
-        formDeleteProfil.appendChild(btnCancelDeleteProfil);
-        formDeleteProfil.appendChild(btnConfirmDeleteProfil);
+        
+        modalDelete.appendChild(formDelete);
+        formDelete.appendChild(labelDelete);
+        formDelete.appendChild(inputDelete);
+        formDelete.appendChild(btnCancelDelete);
+        formDelete.appendChild(btnConfirmDelete);
     });
 
-    btnCancelDeleteProfil.addEventListener('click', function() {
-        modalDeleteProfil.style.display ="none";
+    btnCancelDelete.addEventListener('click', function() {
+        modalDelete.style.display ="none";
         location.reload();
     });
 }
+else if(titlePage.includes('Field')){
+    const btnRent = document.querySelector('.rent');
+    console.log(btnRent);
+    btnRent.addEventListener('click', function() {
+        const modalRent = document.querySelector('.modalRent');
+        modalRent.classList.add("flex");
+        const formRent = document.createElement('form');
+        formRent.setAttribute('method', 'POST');
+        formRent.setAttribute('class', 'form-rent');
+        formRent.setAttribute('action', '?path=addrent');
+        fetch('?path=optionlist')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Problème avec la requête Fetch');
+            }
+            return response.json();
+        })
+        .then(datas => {
+            console.log(datas);
+            const select = document.createElement('select');
+            select.setAttribute('name', 'time');
+            datas.forEach(data => {
+                console.log(data);
+                const option = document.createElement('option');
+                option.setAttribute('value', data.optionId);
+                option.textContent = data.optionName;
+                select.appendChild(option);
+            });
+            formRent.appendChild(select);
+        }
+        )
+        .catch(error => console.error('Erreur Fetch:', error));
 
-
+        const labelRent = document.createElement('label');
+        labelRent.setAttribute('for', 'date');
+        labelRent.textContent = 'Date de réservation';
+        const inputRent = document.createElement('input');
+        inputRent.setAttribute('type', 'date');
+        inputRent.setAttribute('name', 'date');
+        const btnConfirmRent = document.createElement('button');
+        btnConfirmRent.setAttribute('type', 'submit');
+        btnConfirmRent.setAttribute('class', 'btn-confirm');
+        btnConfirmRent.textContent = 'Confirmer';
+        const btnCancelRent = document.createElement('button');
+        btnCancelRent.setAttribute('type', 'button');
+        btnCancelRent.setAttribute('class', 'btn-cancel');
+        btnCancelRent.textContent = 'Annuler';
+        modalRent.appendChild(formRent);
+        formRent.appendChild(labelRent);
+        formRent.appendChild(inputRent);
+        formRent.appendChild(btnCancelRent);
+        formRent.appendChild(btnConfirmRent);
+        btnCancelRent.addEventListener('click', function() {
+            modalRent.style.display ="none";
+            location.reload();
+        });
+    
+    });
+}

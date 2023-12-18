@@ -21,4 +21,13 @@ abstract class AbstractController {
 		header("Location: " . $uri);
 		die;
 	}
+
+	protected function verifIsadmin(){
+		if($_SESSION['role'] != 'admin'){
+			return $this->redirectToRoute('/',[
+				'state' => 'error',
+				'error' => 'You are not allowed to access this page'
+			]);
+		}
+	}
 }

@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
-class CenterFields
+class FieldOption
 {
-    private ?int $centerId;
+    private ?int $optionId;
     private ?int $fieldId;
     private ?string $createdAt;
     private ?string $updatedAt;
 
     
-    public function getCenterId()
+    public function getOptionId()
     {
         return $this->centerId;
     }
@@ -20,17 +20,16 @@ class CenterFields
         return $this->fieldId;
     }
 
-    public function setCenterId($centerId)
+    public function setOptionId($optionId)
     {
-        $this->centerId = $centerId;
+        $this->optionId = $optionId;
         return $this;
-    }
+    }   
 
     public function setFieldId($fieldId)
     {
         $this->fieldId = $fieldId;
         return $this;
     }
-    
 
 }

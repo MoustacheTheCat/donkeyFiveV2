@@ -25,11 +25,11 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="modalDeleteProfil"></div>
+                        <div class="modalDelete"></div>
                         <div class="row pb-5">
                             <div class="col-6 d-flex justify-content-around">
                                 <a href="?path=editadmin&id=<?=$data['admin']->getAdminId()?>" class="btn btn-outline-light m-2">Edit</a>
-                                <button class="btn btn-outline-light m-2 deleteProfile" value="admin">Delete</button>
+                                <button class="btn btn-outline-light m-2 delete" value="admin">Delete</button>
                             </div>
                         </div>
                     </div>

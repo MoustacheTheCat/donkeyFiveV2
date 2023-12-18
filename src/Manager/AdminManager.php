@@ -34,7 +34,7 @@ class AdminManager extends  AbstractManager{
     
 
     public function createAdmin() {
-        $datas = $this->findAllEmailAndNumber(Admin::class, $this->getQuerys()['allAdminEmailAndNumber']);
+        $datas = $this->findAllEmailAndNumber(Admin::class, $this->getAllQuerys()['allAdminEmailAndNumber']);
         $arrayVerifs = [];
         foreach($datas as $data){
             $arrayVerifs[] = $data->getUserEmail();

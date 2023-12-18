@@ -24,7 +24,7 @@ abstract class AbstractManager {
         ];
 		$this->homeCards = HOMECARDS;
 	}
-	public function getQuerys (){
+	public function getAllQuerys (){
 		return $this->querys;
 	}
 
@@ -224,6 +224,8 @@ abstract class AbstractManager {
 		$headers .= "Content-Type: text/html; charset=UTF-8\r\n";	
 		mail($to, $subject, $message, $headers);
 	}
+
+	
 	
 
 }

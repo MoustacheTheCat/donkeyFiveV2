@@ -8,12 +8,12 @@ use App\Entity\User;
 class UserManager extends  AbstractManager{
     
 
-    public array $dataVerifs = ['userName', 'userFirstName', 'userLastName', 'userEmail', 'userPassword', 'userNumber', 'userAddress', 'userZip', 'userCity', 'userCountry', 'userBirthDay'];
+    private array $dataVerifs = ['userName', 'userFirstName', 'userLastName', 'userEmail', 'userPassword', 'userNumber', 'userAddress', 'userZip', 'userCity', 'userCountry', 'userBirthDay'];
     public array $userDatas = [];
 
     public function getCountrys() {
         return $this->getAllCountrys();
-    }
+    } 
 
 
     public function findAll() {
@@ -34,7 +34,7 @@ class UserManager extends  AbstractManager{
     
 
     public function createUser() {
-        $datas = $this->findAllEmailAndNumber(User::class, $this->getQuerys()['allUserEmailAndNumber']);
+        $datas = $this->findAllEmailAndNumber(User::class, $this->getAllQuerys()['allUserEmailAndNumber']);
         $arrayVerifs = [];
         foreach($datas as $data){
             $arrayVerifs[] = $data->getUserEmail();

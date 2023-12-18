@@ -17,36 +17,23 @@
 						<?php endif; ?>
 						<?php if (!empty($_SESSION['role']) && $_SESSION['role'] === 'admin') : ?>
 							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" href="" id="navbarDropdowncenter" userRole="button" data-bs-toggle="dropdown" aria-expanded="false">Center</a>
-								<ul class="dropdown-menu" aria-labelledby="navbarDropdownCar">
-									<li><a class="dropdown-item" href="/centers">Centers</a></li>
-									<li><a class="dropdown-item" href="/center/add">Add Center</a></li>
-								</ul>
+								<a class="nav-link " href="?path=rentals" id="navbarDropdowncenter" >Rental</a>
 							</li>
 							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdowncenter" userRole="button" data-bs-toggle="dropdown" aria-expanded="false">Fields</a>
+								<a class="nav-link dropdown-toggle" href="" id="navbarDropdowncenter" userRole="button" data-bs-toggle="dropdown" aria-expanded="false">Gestion</a>
 								<ul class="dropdown-menu" aria-labelledby="navbarDropdowncenter">
-									<li><a class="dropdown-item" href="/fields">Fields</a></li>
-									<li><a class="dropdown-item" href="/field/add">Add Fields</a></li>
+									<li><a class="dropdown-item" href="?path=centers">Centers</a></li>
+									<li><a class="dropdown-item" href="?path=addcenter">Add Center</a></li>
+									<li><a class="dropdown-item" href="?path=fields">Fields</a></li>
+									<li><a class="dropdown-item" href="?path=addfield">Add Field</a></li>
+									<li><a class="dropdown-item" href="?path=options">Options</a></li>
+									<li><a class="dropdown-item" href="?path=addoption">Add Option</a></li>
+									<li><a class="dropdown-item" href="?path=admins">List admin</a></li>
+									<li><a class="dropdown-item" href="?path=addadmin">Add Admin</a></li>
+									<li><a class="dropdown-item" href="?path=users">List User</a></li>
+									<li><a class="dropdown-item" href="?path=adduser">Add User</a></li>
 								</ul>
 							</li>
-							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdowncenter" userRole="button" data-bs-toggle="dropdown" aria-expanded="false">Rental</a>
-								<ul class="dropdown-menu" aria-labelledby="navbarDropdownCar">
-									<li><a class="dropdown-item" href="/rentals">Rental</a></li>
-								</ul>
-							</li>
-							<?php if ($_SESSION['role'] === 'admin') : ?>
-								<li class="nav-item dropdown">
-									<a class="nav-link dropdown-toggle" href="#" id="navbarDropdowncenter" userRole="button" data-bs-toggle="dropdown" aria-expanded="false">Admin and User</a>
-									<ul class="dropdown-menu" aria-labelledby="navbarDropdowncenter">
-										<li><a class="dropdown-item" href="/admins">List admin</a></li>
-										<li><a class="dropdown-item" href="/admin/add">Add Admin</a></li>
-										<li><a class="dropdown-item" href="/users">List User</a></li>
-										<li><a class="dropdown-item" href="/user/add">Add User</a></li>
-									</ul>
-								</li>
-							<?php endif; ?>
 						<?php endif; ?>
 						<?php if (!empty($_SESSION['role'])) : ?>
 							<li class="nav-item dropdown mr-5 pr-5">

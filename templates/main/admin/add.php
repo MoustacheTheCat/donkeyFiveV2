@@ -6,7 +6,7 @@
                     <div class="card bg-dark text-white" style="border-radius: 1rem;">
                         <div class="card-body p-5 text-center">
                             <div class="mb-md-5 mt-md-4 pb-5">
-                                <h2 class="fw-bold mb-2 text-uppercase">Sign Up</h2>
+                                <h2 class="fw-bold mb-2 text-uppercase">Create Admin</h2>
                                 <p class="text-white-50 mb-5">Please enter your details to create an account!</p>
                                 <?php if (!empty($error)) : ?>
                                     <div class="alert alert-danger" role="alert">
