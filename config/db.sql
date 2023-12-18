@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : jeu. 14 déc. 2023 à 15:25
+-- Généré le : lun. 18 déc. 2023 à 10:07
 -- Version du serveur : 10.6.12-MariaDB-0ubuntu0.22.04.1
 -- Version de PHP : 8.2.13
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `donkeyFiveV2`
 --
+CREATE DATABASE IF NOT EXISTS `donkeyFiveV2` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `donkeyFiveV2`;
 
 -- --------------------------------------------------------
 
@@ -39,6 +41,13 @@ CREATE TABLE `admin` (
   `updatedAt` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Déchargement des données de la table `admin`
+--
+
+INSERT INTO `admin` (`adminId`, `adminFirstName`, `adminLastName`, `adminPassword`, `adminEmail`, `adminNumber`, `adminPicture`, `createdAt`, `updatedAt`) VALUES
+(1, 'mathieu', 'joubert', '$argon2i$v=19$m=65536,t=4,p=1$WDFPLkVKMVZPTnkza2ZqeA$Ko0+s5SJrJaz/rO/kVFdPHfaZ+YitW+CWWuPfKVUcsw', 'mattou83075@gmail.com', 644647815, 'admin-default.jpeg', '2023-12-14 16:40:47', '2023-12-14 16:40:47');
+
 -- --------------------------------------------------------
 
 --
@@ -50,7 +59,7 @@ CREATE TABLE `admin_center` (
   `centerId` int(11) NOT NULL,
   `createdAt` timestamp NULL DEFAULT current_timestamp(),
   `updatedAt` timestamp NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='link user center if user is Admin role';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -583,7 +592,7 @@ CREATE TABLE `option` (
   `optionId` int(11) NOT NULL,
   `optionName` varchar(100) NOT NULL,
   `optionCostHT` float NOT NULL,
-  `optionPicture` varchar(255) DEFAULT 'option-default.png',
+  `optionPicture` varchar(255) NOT NULL,
   `optionDescription` text NOT NULL,
   `createdAt` timestamp NULL DEFAULT current_timestamp(),
   `updatedAt` timestamp NULL DEFAULT current_timestamp()
@@ -598,7 +607,7 @@ INSERT INTO `option` (`optionId`, `optionName`, `optionCostHT`, `optionPicture`,
 (2, 'rental de ballons', 5, 'option-balon.webp', 'Ajoutez une touche festive à votre événement avec la location de ballons.', '2023-12-13 14:01:22', '2023-12-13 14:01:22'),
 (3, 'Marquage personnalisé', 15, 'option-marquage.jpg', 'Personnalisez votre espace avec un marquage distinctif, ajoutant une touche unique à votre événement', '2023-12-13 14:01:22', '2023-12-13 14:01:22'),
 (4, 'Accès aux vestiaires', 10, 'option-vestiaire.jpg', 'Assurez le confort de vos participants en leur offrant un accès facile aux vestiaires pour se préparer.', '2023-12-13 14:01:22', '2023-12-13 14:01:22'),
-(6, 'Service Arbitrage', 30, 'option-arbitrage.jpg', 'Profitez d\'un arbitrage professionnel pour garantir des compétitions équitables et bien organisées.', '2023-12-13 14:01:22', '2023-12-13 14:01:22'),
+(6, 'Service Arbitrage', 30, 'option-arbitrage.jpg', "Profitez d'un arbitrage professionnel pour garantir des compétitions équitables et bien organisées.", '2023-12-13 14:01:22', '2023-12-13 14:01:22'),
 (8, 'Service de restauration', 25, 'option-restauration.jpg', 'Offrez une expérience culinaire exceptionnelle avec notre service de restauration, adapté à vos besoins.', '2023-12-13 14:01:22', '2023-12-13 14:01:22'),
 (9, 'Coaching personnel', 40, 'option-coaching.webp', 'Maximisez les performances avec un coaching personnalisé, offrant un soutien individualisé.', '2023-12-13 14:01:22', '2023-12-13 14:01:22'),
 (10, 'Enregistrement vidéo du match', 35, 'option-video.webp', 'Capturez et revivez les moments clés avec un enregistrement vidéo professionnel de vos matchs.', '2023-12-13 14:01:22', '2023-12-13 14:01:22');
@@ -652,7 +661,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`userId`, `userFirstName`, `userLastName`, `userBirthDay`, `userAddress`, `userZip`, `userCity`, `userCountry`, `userPassword`, `userEmail`, `userNumber`, `userPicture`, `createdAt`, `updatedAt`) VALUES
-(9, 'mathieu', 'joubert', '1990-10-24', '29 rue du ruisseau', 93100, 'Montreuil', 'France', '$argon2i$v=19$m=65536,t=4,p=1$ZkxVWTl4MHZwdjhYRUlrQg$fHb/g1dYdRB6m24SHx/VHcpHLLY1lnBxXnC9HBTgTWI', 'joubert.mathieu753783@gmail.com', 615835301, 'user-defaut.jpeg', '2023-12-14 15:17:30', '2023-12-14 15:17:30');
+(9, 'mathieu', 'joubert', '1990-10-24', '29 rue du ruisseau', 93100, 'Montreuil', 'France', '$argon2i$v=19$m=65536,t=4,p=1$ZkxVWTl4MHZwdjhYRUlrQg$fHb/g1dYdRB6m24SHx/VHcpHLLY1lnBxXnC9HBTgTWI', 'joubert.mathieu753783@gmail.com', 615835301, 'chat_moustache_013-1068x1324-684544402.jpg', '2023-12-14 15:17:30', '2023-12-14 15:17:30');
 
 --
 -- Index pour les tables déchargées
@@ -733,7 +742,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT pour la table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `adminId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `adminId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `center`
@@ -757,7 +766,7 @@ ALTER TABLE `message`
 -- AUTO_INCREMENT pour la table `option`
 --
 ALTER TABLE `option`
-  MODIFY `optionId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `optionId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT pour la table `rental`
