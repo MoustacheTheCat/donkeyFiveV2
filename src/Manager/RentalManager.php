@@ -213,9 +213,13 @@ class RentalManager extends AbstractManager {
 
     public function addOneRentCheck(){
         $id = intval($_GET['id']);
-        $dataRents = $_SESSION['card']['id'];
+        $dataRents = $_SESSION['card'][$id];
+        var_dump($dataRents);
+        die();
     }
     public function addAllRentCheck(){
         $dataRents = $_SESSION['card'];
+        var_dump($dataRents);
+        die();
     }
 } 

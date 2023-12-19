@@ -1,4 +1,3 @@
-<?php var_dump($data['cards']);?>
 <div class="container-fluid">
     <section class="gradient-custom">
         <div class="container py-5 ">
@@ -56,6 +55,7 @@
                                                     <th scope="col">Total HT</th>
                                                     <th scope="col">Total TVA</th>
                                                     <th scope="col">Total TTC</th>
+                                                    <th scope="col"></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -71,6 +71,7 @@
                                                     </td>
                                                     <td><?= $allTotalHT*0.2 ?> €</td>
                                                     <td><?= $allTotalHT*1.2 ?> €</td>
+                                                    <td><a href="?path=cardscheck" class="btn btn-light">Valider tous le panier</a></td>
                                                 </tr>
                                             </tbody>
                                         </table>

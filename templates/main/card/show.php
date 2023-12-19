@@ -1,4 +1,3 @@
-<?php var_dump($data);?>
 <div class="container-fluid">
     <section class="gradient-custom">
         <div class="container py-5 ">

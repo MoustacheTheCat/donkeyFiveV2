@@ -272,6 +272,16 @@ const ROUTES = [
 		'method' => 'updateInfo'
 	],
 
+	'cardcheck' => [
+		'controller' => App\Controller\RentalController::class,
+		'method' => 'cardCheck'
+	],
+
+	'cardscheck' => [
+		'controller' => App\Controller\RentalController::class,
+		'method' => 'cardCheckAll'
+	],
+
 	
 
 	

@@ -23,10 +23,19 @@ abstract class AbstractController {
 	}
 
 	protected function verifIsadmin(){
-		if($_SESSION['role'] != 'admin'){
+		if($_SESSION['role'] !== 'admin'){
 			return $this->redirectToRoute('/',[
 				'state' => 'error',
 				'error' => 'You are not allowed to access this page'
+			]);
+		}
+	}
+
+	protected function verifIsUser(){
+		if(empty($_SESSION['role']) || ($_SESSION['role'] !== 'user')){
+			return $this->redirectToRoute('login',[
+				'state' => 'error',
+				'error' => 'Vous de vez être connecté pour accéder à cette page'
 			]);
 		}
 	}

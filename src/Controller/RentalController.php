@@ -91,4 +91,16 @@ class RentalController extends AbstractController {
 			'state' => 'success',
 			]);
     }
+
+    public function cardCheck(){
+        $this->verifIsUser();
+        $rentalManager = new RentalManager();
+        $rentalManager->addOneRentCheck();
+    }
+    public function cardCheckAll(){
+        $this->verifIsUser();
+        $rentalManager = new RentalManager();
+        $rentalManager->addAllRentCheck();
+
+    }
 }

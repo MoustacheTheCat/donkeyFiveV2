@@ -20,7 +20,6 @@
                             </div>
                         </div>
                         <div class="modalUpdateRentInfo"></div>
-                       
                             <div class="table-responsive-sm">
                                 <table class="table table-dark align-middle caption-top" >
                                 <caption class="bg-white text-dark p-1 text-center"><h3 >Options</h3></caption>
