@@ -78,10 +78,10 @@ class AdminManager extends  AbstractManager{
         $id = $_SESSION['admin']['id'];
         foreach($this->dataVerifs as $data){
             if(isset($_POST[$data])){
-                $this->userDatas[$data] = $_POST[$data];
+                $this->adminDatas[$data] = $_POST[$data];
             }
         }
-        if($this->update(Admin::class, $this->userDatas, ['adminId' => $id])){
+        if($this->update(Admin::class, $this->adminDatas, ['adminId' => $id])){
             return true;
         }
         $error = 'admin not update';

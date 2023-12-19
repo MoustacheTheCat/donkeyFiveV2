@@ -297,6 +297,11 @@ const ROUTES = [
 		'method' => 'getRentalDatas'
 	],
 
+	'rentalcheck' => [
+		'controller' => App\Controller\RentalController::class,
+		'method' => 'checkRental'
+	],
+
 	
 
 	

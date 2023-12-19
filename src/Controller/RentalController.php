@@ -146,6 +146,21 @@ class RentalController extends AbstractController {
         $this->verifIsUser();
         $rentalManager = new RentalManager();
         $rentalManager->addAllRentCheck();
+    }
 
+    public function checkRental(){
+        $this->verifIsAdmin();
+        $rentalManager = new RentalManager();
+        if($rentalManager->checkRentalStatus()){
+            return $this->redirectToRoute('/', [
+                'state' => 'success',
+                ]);
+        }
+        else{
+            return $this->redirectToRoute('/', [
+                'state' => 'error',
+                ]);
+        }
     }
 }
+

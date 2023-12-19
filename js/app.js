@@ -3,17 +3,16 @@ const titlePage = pageTitle.textContent;
 
 if(titlePage.includes('Home')){
     const resultFilter = document.querySelectorAll('section')[3];
+    const inputDateStart = document.querySelector('.ds');
+    const inputDateEnd = document.querySelector('.de');
+    const inputHourStart = document.querySelector('.hs');
+    const inputHourEnd = document.querySelector('.he');
     resultFilter.classList.add('display-filter-hiden');
     let btnFilters = document.querySelectorAll('button');
     btnFilters.forEach(btnFilter => {
         if(btnFilter.value == 'filter') {
             btnFilter.addEventListener('click', function() {
-                const inputDateStart = document.querySelector('.ds');
-                const inputDateEnd = document.querySelector('.de');
-                const inputHourStart = document.querySelector('.hs');
-                const inputHourEnd = document.querySelector('.he');
-                let arrayFiledId = [];
-                let datasTimes = [];
+                let reservations = [];
                 resultFilter.classList.remove('display-filter-hiden');
                 resultFilter.classList.add('display-filter-show');
                 resultFilter.style.visibily = "visible";
@@ -29,15 +28,22 @@ if(titlePage.includes('Home')){
                     return response.json();
                 })
                 .then(datas => {
-                    datas.forEach(data => {
-                        arrayFiledId.push(data.fieldId);
-                        datasTimes.push(data.rentalDataTimes)  ;
+                    datas.map(data => {
+                        if(data.rentalStatus === 2){
+                            let rentalDataTimesObjet = JSON.parse(data.rentalDataTimes);
+                            rentalDataTimesObjet.fieldId = data.fieldId;
+                            reservations.push(rentalDataTimesObjet);
+                        }
                     });
                 })
                 .catch(error => console.error('Erreur Fetch:', error));  
-                console.log(arrayFiledId);
-                console.log(datasTimes);
-                fetch(`?path=filter&id=${centerId}`) 
+                function isFieldAvailable(fieldId, dateStart, dateEnd, hourStart, hourEnd) {
+                    return !reservations.some(reservation => {
+                        return reservation.fieldId === fieldId && reservation.dateStart <= dateEnd && reservation.dateEnd >= dateStart && reservation.hourStart < hourEnd && reservation.hourEnd > hourStart;
+                    });
+                }
+                
+                fetch(`?path=filter&id=${centerId}`)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Problème avec la requête Fetch');
@@ -45,25 +51,35 @@ if(titlePage.includes('Home')){
                     return response.json();
                 })
                 .then(datas => {
-                    if(datas.error == 'Aucune donnée trouvée'){
+                    if (datas.error == 'Aucune donnée trouvée') {
                         resultFilter.classList.remove('display-filter-show');
                         resultFilter.classList.add('display-filter-hiden');
                         return;
                     }
                     const tableBody = document.querySelector('tbody');
                     tableBody.innerHTML = '';
+                    let dateStartRequested = inputDateStart.value;
+                    let dateEndRequested = inputDateEnd.value;
+                    let hourStartRequested = inputHourStart.value;
+                    let hourEndRequested = inputHourEnd.value;
                     datas.forEach(field => {
-                        const tr = document.createElement('tr');
-                        tr.innerHTML = `
-                            <td scope="row">${field.fieldName}</td>
-                            <td>${field.fieldTarifHourHT}</td>
-                            <td>${field.fieldTarifHourHT * 1.2}</td>
-                            <td><a href="?path=field&id=${field.fieldId}" class="btn btn-light">More</a></td>
-                        `;
-                        tableBody.appendChild(tr);
+                        if(reservations.lenght !=0){
+                            if (isFieldAvailable(field.fieldId, dateStartRequested, dateEndRequested, hourStartRequested, hourEndRequested)) {
+                                const tr = document.createElement('tr');
+                                tr.innerHTML = `
+                                    <td scope="row">${field.fieldName}</td>
+                                    <td>${field.fieldTarifHourHT}</td>
+                                    <td>${field.fieldTarifHourHT * 1.2}</td>
+                                    <td><a href="?path=field&id=${field.fieldId}" class="btn btn-light">More</a></td>
+                                `;
+                                tableBody.appendChild(tr);
+                               
+                            }
+                        }
+                        
                     });
                 })
-                .catch(error => console.error('Erreur Fetch:', error));  
+                .catch(error => console.error('Erreur Fetch:', error));
             });
         }
     });
@@ -105,7 +121,6 @@ else if(titlePage.includes('Profile')){
             formDelete.setAttribute('action', '?path=deleteuser');
             labelDelete.textContent = 'renseigner votre password pour supprimer votre compte ?';
         }
-        
         modalDelete.appendChild(formDelete);
         formDelete.appendChild(labelDelete);
         formDelete.appendChild(inputDelete);

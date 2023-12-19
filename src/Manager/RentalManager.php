@@ -273,4 +273,20 @@ class RentalManager extends AbstractManager {
         }
 	}
 
+    public function checkRentalStatus(){
+        $id = intval($_GET['id']);
+        $status = [];
+        if($_GET['status'] == 0){
+            $status['rentalStatus'] = 0;
+        }
+        elseif($_GET['status'] == 2){
+            $status['rentalStatus'] = 2;
+        }
+        $res = $this->update(Rental::class, $status, ['rentalId' => $id]);
+        if($res){
+            return true;
+        }
+        return false;
+    }
+
 } 
