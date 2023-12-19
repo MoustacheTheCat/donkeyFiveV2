@@ -67,11 +67,11 @@
 						<?php endif; ?>
 						<?php if (empty($_SESSION['user']) || (!empty($_SESSION['role']) &&  $_SESSION['role'] === 'user')) : ?>
 							<li class="nav-item">
-								<a class="nav-link" href="?path=rentals"> 
+								<a class="nav-link" href="?path=cards"> 
 									<i class="bi bi-cart">
 									<img src="public/logo/header/sticker-but-de-foot-ambiance-sticker-KC10584-3854526139.svg" alt="" srcset="">
-									<?php if(!empty($_SESSION['cart'])):?>
-										<span class="badge bg-dark text-white rounded-pill cart-items"><?= count($_SESSION['cart'])?></span>
+									<?php if(!empty($_SESSION['card'])):?>
+										<span class="badge bg-danger text-white rounded-pill cart-items"><?= count($_SESSION['card'])?></span>
 									<?php endif;?>
 									</i>
 								</a>

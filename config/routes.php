@@ -5,6 +5,11 @@ const ROUTES = [
 		'controller' => App\Controller\HomeController::class,
 		'method' => 'home'
 	],
+	
+	'cardhome' => [
+		'controller' => App\Controller\HomeCardController::class,
+		'method' => 'viewCardDetail'
+	],
 
 	'filter' => [
 		'controller' => App\Controller\FieldController::class,
@@ -193,36 +198,6 @@ const ROUTES = [
 		'method' => 'deleteField'
 	],
 
-	// 'cards' => [
-	// 	'controller' => App\Controller\CardController::class,
-	// 	'method' => 'shows'
-	// ],
-
-	// 'card' => [
-	// 	'controller' => App\Controller\CardController::class,
-	// 	'method' => 'show'
-	// ],
-
-	// 'addcard' => [
-	// 	'controller' => App\Controller\CardController::class,
-	// 	'method' => 'add'
-	// ],
-
-	// 'addcardcheck' => [
-	// 	'controller' => App\Controller\CardController::class,
-	// 	'method' => 'addCheck'
-	// ],
-
-	// 'editcard' => [
-	// 	'controller' => App\Controller\CardController::class,
-	// 	'method' => 'edit'
-	// ],
-
-	// 'deletecard' => [
-	// 	'controller' => App\Controller\CardController::class,
-	// 	'method' => 'deleteCard'
-	// ],
-
 	'centers' => [
 		'controller' => App\Controller\CenterController::class,
 		'method' => 'shows'
@@ -268,10 +243,36 @@ const ROUTES = [
 		'method' => 'add'
 	],
 
-	'rentals' => [
+	'cards' => [
 		'controller' => App\Controller\RentalController::class,
-		'method' => 'shows'
+		'method' => 'showCards'
 	],
+
+	'card' => [
+		'controller' => App\Controller\RentalController::class,
+		'method' => 'showCard'
+	],
+
+	'editcard' => [
+		'controller' => App\Controller\RentalController::class,
+		'method' => 'edit'
+	],
+	'deletecard' => [
+		'controller' => App\Controller\RentalController::class,
+		'method' => 'delete'
+		
+	],
+	'updatecardoption' => [
+		'controller' => App\Controller\RentalController::class,
+		'method' => 'updateOption'
+	],
+
+	'updatecardinfo' => [
+		'controller' => App\Controller\RentalController::class,
+		'method' => 'updateInfo'
+	],
+
+	
 
 	
 

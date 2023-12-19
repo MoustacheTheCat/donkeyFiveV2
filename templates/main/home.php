@@ -67,7 +67,7 @@
                                 <p class="card-text"><?= $value['description'] ?></p>
                             </div>
                             <div class="card-footer ">
-                                <a href="?path=card&name=<?= $key ?>" class="btn btn-dark">Go somewhere</a>
+                                <a href="?path=cardhome&name=<?= $key ?>" class="btn btn-dark">Go somewhere</a>
                             </div>
                         </div>
                     <?php endforeach;?>
