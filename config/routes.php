@@ -282,6 +282,21 @@ const ROUTES = [
 		'method' => 'cardCheckAll'
 	],
 
+	'rentals' => [
+		'controller' => App\Controller\RentalController::class,
+		'method' => 'showRentals'
+	],
+
+	'rental' => [
+		'controller' => App\Controller\RentalController::class,
+		'method' => 'showRental'
+	],
+
+	'rentaldatas' => [
+		'controller' => App\Controller\RentalController::class,
+		'method' => 'getRentalDatas'
+	],
+
 	
 
 	

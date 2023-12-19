@@ -14,13 +14,13 @@
                             <option value="<?=$value->getCenterId()?>"><?= $value->getCenterCity() ?></option>
                         <?php endforeach; ?>
                     </select>
-                    <input class="form-control " type="dateStart" name="dateStart" min="<?=date('Y-m-d')?>" value="<?=date('Y-m-d')?>" >
+                    <input class="form-control ds" type="dateStart" name="dateStart" min="<?=date('Y-m-d')?>" value="<?=date('Y-m-d')?>" >
                     <label class="form-label" for="dateEnd"></label>
-                    <input class="form-control" type="dateEnd" name="dateEnd" min="<?=date('Y-m-d')?>" value="<?=date('Y-m-d')?>" >
+                    <input class="form-control de" type="dateEnd" name="dateEnd" min="<?=date('Y-m-d')?>" value="<?=date('Y-m-d')?>" >
                     <label class="form-label" for="hourStart"></label>
-                    <input class="form-control" type="time" name="hourStart" id="" value="<?=date('H:i')?>" >
+                    <input class="form-control hs" type="time" name="hourStart" id="" value="<?=date('H:i')?>" >
                     <label class="form-label" for="hourEnd"></label>
-                    <input class="form-control" type="time" name="hourEnd" id="" value="<?=date('H:i')?>" 
+                    <input class="form-control he" type="time" name="hourEnd" id="" value="<?=date('H:i')?>" 
                 </div>
                 <button type="submit" class="btn btn-light" name="filterForRentalOrCountry" value="filter">🔎</button>
             </div>

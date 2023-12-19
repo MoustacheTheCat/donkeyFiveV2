@@ -8,6 +8,12 @@ if(titlePage.includes('Home')){
     btnFilters.forEach(btnFilter => {
         if(btnFilter.value == 'filter') {
             btnFilter.addEventListener('click', function() {
+                const inputDateStart = document.querySelector('.ds');
+                const inputDateEnd = document.querySelector('.de');
+                const inputHourStart = document.querySelector('.hs');
+                const inputHourEnd = document.querySelector('.he');
+                let arrayFiledId = [];
+                let datasTimes = [];
                 resultFilter.classList.remove('display-filter-hiden');
                 resultFilter.classList.add('display-filter-show');
                 resultFilter.style.visibily = "visible";
@@ -15,6 +21,22 @@ if(titlePage.includes('Home')){
                 const option = select.options[select.selectedIndex];
                 const value = option.value;
                 const centerId = value;
+                fetch(`?path=rentaldatas`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Problème avec la requête Fetch');
+                    }
+                    return response.json();
+                })
+                .then(datas => {
+                    datas.forEach(data => {
+                        arrayFiledId.push(data.fieldId);
+                        datasTimes.push(data.rentalDataTimes)  ;
+                    });
+                })
+                .catch(error => console.error('Erreur Fetch:', error));  
+                console.log(arrayFiledId);
+                console.log(datasTimes);
                 fetch(`?path=filter&id=${centerId}`) 
                 .then(response => {
                     if (!response.ok) {

@@ -7,10 +7,10 @@ class Rental {
     public ?int $rentalNumber;
     public ?int $userId;
     public ?int $fieldId;
-    public ?int $rentalCostOfTVA;
+    public ?float $rentalCostOfTVA;
     public ?string $rentalStatus;
-    public ?array $rentalDataOptions;
-    public ?array $rentalDataTimes;
+    public ?string $rentalDataOptions;
+    public ?string $rentalDataTimes;
     public ?float $rentalTotalHT;
     public ?float $rentalTotalTTC;
     public ?string $createdAt;
@@ -55,12 +55,12 @@ class Rental {
         return $this;
     }
 
-    public function getRentalCostOfTVA(): ?int
+    public function getRentalCostOfTVA(): ?float
     {
         return $this->rentalCostOfTVA;
     }
 
-    public function setRentalCostOfTVA(?int $rentalCostOfTVA): self
+    public function setRentalCostOfTVA(?float $rentalCostOfTVA): self
     {
         $this->rentalCostOfTVA = $rentalCostOfTVA;
         return $this;
@@ -77,23 +77,23 @@ class Rental {
         return $this;
     }
 
-    public function getRentalDataOptions(): ?array
+    public function getRentalDataOptions(): ?string
     {
         return $this->rentalDataOptions;
     }
 
-    public function setRentalDataOptions(?array $rentalDataOptions): self
+    public function setRentalDataOptions(?string $rentalDataOptions): self
     {
         $this->rentalDataOptions = $rentalDataOptions;
         return $this;
     }
 
-    public function getRentalDataTimes(): ?array
+    public function getRentalDataTimes(): ?string
     {
         return $this->rentalDataTimes;
     }
 
-    public function setRentalDataTimes(?array $rentalDataTimes): self
+    public function setRentalDataTimes(?string $rentalDataTimes): self
     {
         $this->rentalDataTimes = $rentalDataTimes;
         return $this;

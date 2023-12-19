@@ -9,6 +9,18 @@ use App\Manager\FieldManager;
 
 class RentalManager extends AbstractManager {
 
+    public function findAll() {
+        return $this->readMany(Rental::class);
+    }
+
+    public function findByGetId() {
+        return $this->readOne(Rental::class, ['rentalId' => $_GET['id']]);
+    }
+
+    public function findByParamId($id) {
+        return $this->readOne(Rental::class, ['rentalId' => $id]);
+    }
+
     public function createRental(){
         $arrayError = [];
         $dateDefault = strtotime(date('Y-m-d'));
@@ -213,13 +225,52 @@ class RentalManager extends AbstractManager {
 
     public function addOneRentCheck(){
         $id = intval($_GET['id']);
+        $dataForRents = [];
         $dataRents = $_SESSION['card'][$id];
         var_dump($dataRents);
-        die();
+        $dataForRents['rentalNumber'] = $this->createRentalNumber();
+        $dataForRents['userId'] = $_SESSION['user']['id'];
+        $dataForRents['fieldId'] = $dataRents['fieldId'];
+        if(!empty($dataRents['options'])){
+            $dataForRents['rentalDataOptions'] = json_encode($dataRents['options']);
+        }
+        
+        $dataForRents['rentalDataTimes'] = json_encode($dataRents['times']);
+        $dataForRents['rentalTotalHT'] = $dataRents['totalHT'];
+        $dataForRents['rentalTotalTTC'] = $dataRents['totalHT'] * 1.2;
+        var_dump($dataForRents);
+        if($this->create(Rental::class, $dataForRents)){
+            unset($_SESSION['card'][$id]);
+            return true;
+        }
+        return false;
     }
     public function addAllRentCheck(){
         $dataRents = $_SESSION['card'];
+        $userId = $_SESSION['user']['id'];
+        $rentalNumber = $this->createRentalNumber();
         var_dump($dataRents);
+        var_dump($userId);
+        var_dump($rentalNumber);
         die();
     }
+
+ 
+
+    protected function createRentalNumber(){
+        $rentalNumber = rand(0, 999999);
+		$rental = $this->readManyByQueryPerso(Rental::class, $this->getAllQuerys()['allRentalNumber']);
+		if(empty($rental)){
+			return $rentalNumber;
+		}
+		else{
+            foreach($rental as $rent){
+                if($rent->getRentalNumber() === $rentalNumber){
+                    return createRentalNumber();
+                }
+            }
+            return $rentalNumber;
+        }
+	}
+
 } 
